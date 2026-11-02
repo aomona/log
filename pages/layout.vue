@@ -1,0 +1,13 @@
+<!-- pages/layout.vue -->
+<script setup lang="ts">
+</script>
+
+<template>
+  <main>
+    <slot />
+  </main>
+</template>
+
+<style>
+@import "tailwindcss";
+</style>
