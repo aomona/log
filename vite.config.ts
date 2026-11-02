@@ -1,7 +1,14 @@
 import { defineConfig } from "vite";
 import { voidPlugin } from "void";
 import { voidVue } from "@void/vue/plugin";
+import tailwindcss from "@tailwindcss/vite"
+import path from "path";
 
 export default defineConfig({
-  plugins: [voidPlugin(), voidVue()],
+  plugins: [voidPlugin(), voidVue(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    }
+  }
 });

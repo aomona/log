@@ -10,7 +10,11 @@
     "types": [
       "void/env"
     ],
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "src",
