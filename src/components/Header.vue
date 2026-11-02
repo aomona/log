@@ -19,7 +19,3 @@
     </button>
   </header>
 </template>
-
-<style>
-
-</style>
