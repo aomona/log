@@ -8,12 +8,14 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "types": [
-      "void/env"
+      "void/env",
+      "vite/client"
     ],
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@void/md/pages": ["./src/types/void-md-pages.d.ts"]
     }
   },
   "include": [
