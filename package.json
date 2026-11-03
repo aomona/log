@@ -14,11 +14,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@void/vue": "1.2.1",
+    "@void/vue": "1.4.0",
     "typescript": "^7.0.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@^1.3.0",
     "vite-plus": "^1.3.0",
-    "void": "^1.2.1"
+    "void": "1.4.0"
   },
   "private": true,
   "type": "module",
