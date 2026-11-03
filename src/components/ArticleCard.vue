@@ -6,7 +6,7 @@ const props = defineProps<{
   mintoread: string;
   date: string;
   location: string;
-  tags?: string[];
+  tags?: [string?, string?];
 }>();
 </script>
 
