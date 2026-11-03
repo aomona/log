@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ArticleCard from '@/components/ArticleCard.vue';
-import Divider from '@/components/Divider.vue';
-import { calculateMinutesToRead } from '@/lib/calculateMinutesToRead';
-import { getMarkdownSource } from '@/lib/markdown';
-import pages from '@void/md/pages';
+import ArticleCard from "@/components/ArticleCard.vue";
+import Divider from "@/components/Divider.vue";
+import { calculateMinutesToRead } from "@/lib/calculateMinutesToRead";
+import { getMarkdownSource } from "@/lib/markdown";
+import pages from "@void/md/pages";
 
 const articles = pages.map((page) => ({
   title: page.title,
@@ -11,7 +11,7 @@ const articles = pages.map((page) => ({
   date: new Date(page.frontmatter.date).toISOString().slice(0, 10),
   location: page.frontmatter.location,
   tags: page.frontmatter.tags,
-  href: page.path.replace(/\.md$/, ''),
+  href: page.path.replace(/\.md$/, ""),
 }));
 </script>
 

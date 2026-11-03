@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Tag from './Tag.vue';
+import Tag from "./Tag.vue";
 
 const props = defineProps<{
   title: string;
@@ -12,11 +12,22 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div tabindex="0" class="article-card grid grid-cols-3 grid-rows-[2fr_1fr_2fr] h-54 gap-x-3 gap-y-13 p-4 rounded-xl">
-    <a :href="props.href" class="col-start-1 col-end-3 text-xl before:content-[''] before:absolute before:inset-0 before:z-0">{{ props.title }}</a>
-    <span class="text-zinc-500 text-sm flex items-center justify-end">{{minutesToRead}} min to read</span>
+  <div
+    tabindex="0"
+    class="article-card grid grid-cols-3 grid-rows-[2fr_1fr_2fr] h-54 gap-x-3 gap-y-13 p-4 rounded-xl"
+  >
+    <a
+      :href="props.href"
+      class="col-start-1 col-end-3 text-xl before:content-[''] before:absolute before:inset-0 before:z-0"
+      >{{ props.title }}</a
+    >
+    <span class="text-zinc-500 text-sm flex items-center justify-end"
+      >{{ minutesToRead }} min to read</span
+    >
     <span class="text-zinc-500 text-sm flex items-center">{{ props.date }}</span>
-    <span class="col-start-3 text-zinc-500 text-sm flex items-center justify-end">{{ props.location }}</span>
+    <span class="col-start-3 text-zinc-500 text-sm flex items-center justify-end">{{
+      props.location
+    }}</span>
     <Tag v-if="props.tags?.[1]" class="col-start-2">{{ props.tags?.[1] }}</Tag>
     <Tag v-if="props.tags?.[0]" class="col-start-3">{{ props.tags?.[0] }}</Tag>
   </div>
@@ -30,7 +41,7 @@ const props = defineProps<{
 }
 
 .article-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -39,7 +50,8 @@ const props = defineProps<{
   background-color: var(--color-zinc-100);
   opacity: 0;
   scale: 0.98;
-  transition: scale 500ms cubic-bezier(0.22, 1, 0.36, 1),
+  transition:
+    scale 500ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 

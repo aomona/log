@@ -1,4 +1,4 @@
-import type { ArticleFrontmatter } from './frontmatter';
+import type { ArticleFrontmatter } from "./frontmatter";
 
 export interface MdPage {
   path: string;
