@@ -1,7 +1,11 @@
 <template>
-  <div class="whitespace-pre-wrap w-full flex justify-center">
-    <div class="w-full max-w-7xl px-6">
+  <div class="w-full flex justify-center">
+    <div class="void-md w-full max-w-7xl px-6">
       <slot />
     </div>
   </div>
 </template>
+
+<style>
+@import "@void/md/theme-content.css";
+</style>
