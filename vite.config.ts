@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vite-plus";
 import { voidPlugin } from "void";
 import { voidMarkdown } from "@void/md/plugin";
 import { voidVue } from "@void/vue/plugin";
@@ -12,4 +12,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  staged: {
+      '*': 'vp check --fix',
+    },
 });
