@@ -14,7 +14,8 @@
     "check": "vp check",
     "build": "vp build",
     "preview": "vp preview",
-    "postinstall": "void prepare"
+    "postinstall": "void prepare",
+    "prepare": "vp config --no-agent"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
