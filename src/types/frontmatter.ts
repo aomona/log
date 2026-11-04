@@ -1,5 +1,5 @@
 export interface ArticleFrontmatter {
-  date: string;
+  date: Date;
   location: string;
   tags: [string?, string?];
 }
