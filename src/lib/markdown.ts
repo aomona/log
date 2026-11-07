@@ -1,14 +1,19 @@
-const markdownFiles = import.meta.glob<string>("/pages/**/*.md", {
-  query: "?raw",
-  import: "default",
-  eager: true,
-});
+// Select the glob before building the map. Filtering a shared eager raw import
+// at runtime hides the page but leaves development-only text in production JS.
+const markdownFiles = import.meta.env.DEV
+  ? import.meta.glob<string>(["/pages/**/*.md", "!/pages/**/*.prod.md"], {
+      query: "?raw",
+      import: "default",
+      eager: true,
+    })
+  : import.meta.glob<string>(["/pages/**/*.md", "!/pages/**/*.dev.md"], {
+      query: "?raw",
+      import: "default",
+      eager: true,
+    });
 
 const markdownByPath = new Map<string, string>();
 for (const [file, source] of Object.entries(markdownFiles)) {
-  const environment = file.match(/\.(dev|prod)\.md$/)?.[1];
-  if (environment && environment !== (import.meta.env.DEV ? "dev" : "prod")) continue;
-
   const path =
     file
       .replace(/^\/pages\//, "/")
