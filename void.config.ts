@@ -6,4 +6,13 @@ export default defineConfig({
     compatibility_date: "2026-02-24",
   },
   output: "static",
+  head: {
+    link: [
+      {
+        rel: "stylesheet",
+        // Make the opt-in available before external styles load, without another request.
+        href: `data:text/css,${encodeURIComponent("@view-transition { navigation: auto; }")}`,
+      },
+    ],
+  },
 });

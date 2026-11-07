@@ -13,10 +13,6 @@ import Header from "@/components/Header.vue";
 @import "tailwindcss";
 @source not "../build";
 
-@view-transition {
-  navigation: auto;
-}
-
 :root {
   color-scheme: light dark;
 }
