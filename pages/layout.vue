@@ -11,6 +11,7 @@ import Header from "@/components/Header.vue";
 
 <style>
 @import "tailwindcss";
+@source not "../build";
 
 @view-transition {
   navigation: auto;

@@ -4,9 +4,10 @@ import { voidMarkdown } from "@void/md/plugin";
 import { voidVue } from "@void/vue/plugin";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import { articleTitleTransitions } from "./build/article-title-transitions";
 
 export default defineConfig({
-  plugins: [voidPlugin(), voidMarkdown(), voidVue(), tailwindcss()],
+  plugins: [voidPlugin(), voidMarkdown(), articleTitleTransitions(), voidVue(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
