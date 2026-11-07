@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Link } from "@void/vue";
+import { articleTitleTransitionName } from "@/lib/articleTitleTransition";
 import Tag from "./Tag.vue";
 
 const props = defineProps<{
@@ -22,7 +23,12 @@ const props = defineProps<{
       prefetch
       class="col-start-1 col-end-3 text-xl before:content-[''] before:absolute before:inset-0 before:z-0"
     >
-      {{ props.title }}
+      <span
+        :style="{ viewTransitionName: articleTitleTransitionName(props.href) }"
+        class="inline-block"
+      >
+        {{ props.title }}
+      </span>
     </Link>
     <span class="text-zinc-500 dark:text-zinc-400 text-sm flex items-center justify-end">
       {{ minutesToRead }} min to read
