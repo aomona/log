@@ -12,6 +12,10 @@ import Header from "@/components/Header.vue";
 <style>
 @import "tailwindcss";
 
+@view-transition {
+  navigation: auto;
+}
+
 :root {
   color-scheme: light dark;
 }
@@ -23,5 +27,13 @@ body {
 ::selection {
   background: #49e673;
   color: #a33489;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
+  }
 }
 </style>
