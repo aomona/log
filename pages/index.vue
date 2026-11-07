@@ -5,14 +5,16 @@ import { calculateMinutesToRead } from "@/lib/calculateMinutesToRead";
 import { getMarkdownSource } from "@/lib/markdown";
 import pages from "@void/md/pages";
 
-const articles = pages.map((page) => ({
-  title: page.title,
-  minutesToRead: calculateMinutesToRead(getMarkdownSource(page.path)),
-  date: new Date(page.frontmatter.date).toISOString().slice(0, 10),
-  location: page.frontmatter.location,
-  tags: page.frontmatter.tags,
-  href: page.path.replace(/\.md$/, ""),
-}));
+const articles = pages
+  .map((page) => ({
+    title: page.title,
+    minutesToRead: calculateMinutesToRead(getMarkdownSource(page.path)),
+    date: new Date(page.frontmatter.date).toISOString().slice(0, 10),
+    location: page.frontmatter.location,
+    tags: page.frontmatter.tags,
+    href: page.path.replace(/\.md$/, ""),
+  }))
+  .sort((a, b) => b.date.localeCompare(a.date));
 </script>
 
 <template>
