@@ -18,19 +18,15 @@ const articles = pages
 </script>
 
 <template>
-  <div class="w-full flex justify-center">
-    <div class="w-full max-w-6xl">
-      <template v-for="(article, index) in articles" :key="index">
-        <ArticleCard
-          :href="article.href"
-          :title="article.title"
-          :minutesToRead="article.minutesToRead"
-          :date="article.date"
-          :location="article.location"
-          :tags="article.tags"
-        />
-        <Divider v-if="index < articles.length - 1" />
-      </template>
-    </div>
-  </div>
+  <template v-for="(article, index) in articles" :key="index">
+    <ArticleCard
+      :href="article.href"
+      :title="article.title"
+      :minutesToRead="article.minutesToRead"
+      :date="article.date"
+      :location="article.location"
+      :tags="article.tags"
+    />
+    <Divider v-if="index < articles.length - 1" />
+  </template>
 </template>

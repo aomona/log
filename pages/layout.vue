@@ -3,10 +3,14 @@ import Header from "@/components/Header.vue";
 </script>
 
 <template>
-  <Header />
-  <main>
-    <slot />
-  </main>
+  <div class="container mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto gap-8 flex flex-col">
+      <Header />
+      <main>
+        <slot />
+      </main>
+    </div>
+  </div>
 </template>
 
 <style>

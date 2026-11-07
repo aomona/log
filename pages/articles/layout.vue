@@ -1,8 +1,6 @@
 <template>
-  <div class="w-full flex justify-center">
-    <div class="void-md w-full max-w-7xl px-6">
-      <slot />
-    </div>
+  <div class="void-md w-full">
+    <slot />
   </div>
 </template>
 
