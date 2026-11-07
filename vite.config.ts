@@ -1,4 +1,4 @@
-import { defineConfig } from "vite-plus";
+import { defineConfig, lazyPlugins } from "vite-plus";
 import { voidPlugin } from "void";
 import { voidMarkdown } from "@void/md/plugin";
 import { voidVue } from "@void/vue/plugin";
@@ -7,7 +7,13 @@ import path from "path";
 import { articleTitleTransitions } from "./build/article-title-transitions";
 
 export default defineConfig({
-  plugins: [voidPlugin(), voidMarkdown(), articleTitleTransitions(), voidVue(), tailwindcss()],
+  plugins: lazyPlugins(() => [
+    voidPlugin(),
+    voidMarkdown(),
+    articleTitleTransitions(),
+    voidVue(),
+    tailwindcss(),
+  ]),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
