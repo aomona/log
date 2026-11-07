@@ -20,6 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        id: node
         with:
           node-version: "24"
           package-manager-cache: false
@@ -32,14 +33,14 @@ jobs:
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: node_modules/.vite/task-cache
-          key: vite-task-${{ runner.os }}-${{ runner.arch }}-node24-${{ github.run_id }}-${{ github.run_attempt }}
+          key: vite-task-${{ runner.os }}-${{ runner.arch }}-${{ steps.node.outputs.node-version }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            vite-task-${{ runner.os }}-${{ runner.arch }}-node24-
+            vite-task-${{ runner.os }}-${{ runner.arch }}-${{ steps.node.outputs.node-version }}-
       - parallel:
           - name: Check
-            run: bun run vp run --cache check
+            run: bun run vp run ci-check
           - name: Typecheck
-            run: bun run vp run --cache typecheck
+            run: bun run vp run ci-typecheck
           - name: Test
             run: bun run vp run ci-test
           - name: Build

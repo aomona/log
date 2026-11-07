@@ -6,6 +6,23 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { articleTitleTransitions } from "./build/article-title-transitions";
 
+// Fingerprint repository files; generated directory listings vary between CI runs.
+const taskCacheInput = [
+  "**/*",
+  "!node_modules/**",
+  "!.git",
+  "!.git/**",
+  "!.void",
+  "!.void/**",
+  "!.void-wrangler.jsonc",
+  "!.wrangler",
+  "!.wrangler/**",
+  "!.cloudflare",
+  "!.cloudflare/**",
+  "!dist",
+  "!dist/**",
+];
+
 export default defineConfig({
   plugins: lazyPlugins(() => [
     voidPlugin(),
@@ -24,10 +41,18 @@ export default defineConfig({
   },
   run: {
     tasks: {
+      "ci-check": {
+        command: "vp check --deny-warnings",
+        cache: { input: taskCacheInput, output: [] },
+      },
+      "ci-typecheck": {
+        command: "vue-tsc --noEmit",
+        cache: { input: taskCacheInput, output: [] },
+      },
       "ci-test": {
         command: "vp test run",
         cache: {
-          input: [{ auto: true }, "!.void/**", "!.wrangler/**", "!.cloudflare/**", "!dist/**"],
+          input: taskCacheInput,
           output: [],
         },
       },
@@ -35,7 +60,7 @@ export default defineConfig({
         command: "vp build",
         cache: {
           env: ["VOID_CLOUDFLARE_DEPLOY_BUILD"],
-          input: [{ auto: true }, "!.void/**", "!.wrangler/**", "!.cloudflare/**", "!dist/**"],
+          input: taskCacheInput,
           output: ["dist/**", ".cloudflare/output/**"],
         },
       },
