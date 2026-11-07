@@ -23,12 +23,14 @@ jobs:
         task: [check, typecheck, test, build]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: lts/*
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+          node-version: "24"
+          package-manager-cache: false
+      - uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3
+        with:
+          cache: true
+          require-lockfile: true
       - run: pnpm run ${{ matrix.task }}
         env:
           VOID_CLOUDFLARE_DEPLOY_BUILD: ${{ matrix.task == 'build' && '1' || '' }}
@@ -40,12 +42,14 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: lts/*
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+          node-version: "24"
+          package-manager-cache: false
+      - uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3
+        with:
+          cache: true
+          require-lockfile: true
       - name: Deploy
         env:
           # Add this scoped token at Settings → Secrets and variables → Actions.
