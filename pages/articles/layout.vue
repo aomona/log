@@ -8,4 +8,8 @@
 
 <style>
 @import "@void/md/theme-content.css";
+
+.void-md pre.shiki.shiki-themes {
+  --shiki-light-bg: var(--vmd-bg-soft);
+}
 </style>

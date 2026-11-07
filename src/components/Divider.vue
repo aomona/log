@@ -1,3 +1,3 @@
 <template>
-  <hr class="border-none h-px bg-black my-3" />
+  <hr class="border-none h-px bg-black dark:bg-zinc-700 my-3" />
 </template>

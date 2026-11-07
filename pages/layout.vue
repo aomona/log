@@ -11,6 +11,15 @@ import Header from "@/components/Header.vue";
 
 <style>
 @import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-white text-black dark:bg-zinc-950 dark:text-zinc-100;
+}
+
 ::selection {
   background: #49e673;
   color: #a33489;
