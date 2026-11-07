@@ -16,12 +16,20 @@ const props = defineProps<{
 <template>
   <div
     tabindex="0"
-    class="article-card grid grid-cols-3 grid-rows-[2fr_1fr_2fr] h-54 gap-x-3 gap-y-13 p-4 rounded-xl"
+    :class="[
+      'relative isolate grid h-54 grid-cols-3 grid-rows-[2fr_1fr_2fr] gap-x-3 gap-y-13 rounded-xl p-4 [corner-shape:superellipse(2)]',
+      'before:pointer-events-none before:absolute before:inset-0 before:-z-1 before:rounded-[inherit]',
+      'before:scale-98 before:bg-zinc-100 before:opacity-0 dark:before:bg-zinc-800',
+      'before:transition-[scale,opacity] before:duration-500 before:ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:before:transition-none',
+      'hover:cursor-pointer hover:before:scale-100 hover:before:opacity-100',
+      'focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-3 focus-visible:outline-zinc-500 dark:focus-visible:outline-zinc-400',
+      'focus-visible:before:scale-100 focus-visible:before:opacity-100',
+    ]"
   >
     <Link
       :href="props.href"
       prefetch
-      class="col-start-1 col-end-3 text-xl before:content-[''] before:absolute before:inset-0 before:z-0"
+      class="col-start-1 col-end-3 text-xl before:absolute before:inset-0 before:z-0 before:content-['']"
     >
       <span
         :style="{ viewTransitionName: articleTitleTransitionName(props.href) }"
@@ -30,12 +38,12 @@ const props = defineProps<{
         {{ props.title }}
       </span>
     </Link>
-    <span class="text-zinc-500 dark:text-zinc-400 text-sm flex items-center justify-end">
+    <span class="flex items-center justify-end text-sm text-zinc-500 dark:text-zinc-400">
       {{ minutesToRead }} min to read
     </span>
-    <span class="text-zinc-500 dark:text-zinc-400 text-sm flex items-center">{{ props.date }}</span>
+    <span class="flex items-center text-sm text-zinc-500 dark:text-zinc-400">{{ props.date }}</span>
     <span
-      class="col-start-3 text-zinc-500 dark:text-zinc-400 text-sm flex items-center justify-end"
+      class="col-start-3 flex items-center justify-end text-sm text-zinc-500 dark:text-zinc-400"
     >
       {{ props.location }}
     </span>
@@ -43,57 +51,3 @@ const props = defineProps<{
     <Tag v-if="props.tags?.[0]" class="col-start-3">{{ props.tags?.[0] }}</Tag>
   </div>
 </template>
-
-<style scoped>
-.article-card {
-  position: relative;
-  isolation: isolate;
-  corner-shape: superellipse(2);
-}
-
-.article-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: inherit;
-  background-color: var(--color-zinc-100);
-  opacity: 0;
-  scale: 0.98;
-  transition:
-    scale 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.article-card:hover {
-  cursor: pointer;
-}
-
-.article-card:focus-visible {
-  outline: 2px solid var(--color-zinc-500);
-  outline-offset: 3px;
-}
-
-.article-card:hover::before,
-.article-card:focus-visible::before {
-  opacity: 1;
-  scale: 1;
-}
-
-@media (prefers-color-scheme: dark) {
-  .article-card::before {
-    background-color: var(--color-zinc-800);
-  }
-
-  .article-card:focus-visible {
-    outline-color: var(--color-zinc-400);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .article-card::before {
-    transition: none;
-  }
-}
-</style>
