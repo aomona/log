@@ -9,11 +9,10 @@
     "skipLibCheck": true,
     "types": ["void/env", "vite/client"],
     "jsx": "preserve",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
       "@void/md/pages": ["./src/types/void-md-pages.d.ts"]
     }
   },
-  "include": ["src", "pages", "routes", "middleware", "crons", "queues", "db"]
+  "include": ["src", "pages", "routes", "middleware", "crons", "queues", "db", "build", "*.ts"]
 }
