@@ -12,6 +12,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  fmt: {
+    htmlWhitespaceSensitivity: "ignore",
+  },
   staged: {
     "*": "vp check --fix",
   },

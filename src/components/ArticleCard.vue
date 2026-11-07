@@ -21,16 +21,18 @@ const props = defineProps<{
       :href="props.href"
       prefetch
       class="col-start-1 col-end-3 text-xl before:content-[''] before:absolute before:inset-0 before:z-0"
-      >{{ props.title }}</Link
     >
-    <span class="text-zinc-500 dark:text-zinc-400 text-sm flex items-center justify-end"
-      >{{ minutesToRead }} min to read</span
-    >
+      {{ props.title }}
+    </Link>
+    <span class="text-zinc-500 dark:text-zinc-400 text-sm flex items-center justify-end">
+      {{ minutesToRead }} min to read
+    </span>
     <span class="text-zinc-500 dark:text-zinc-400 text-sm flex items-center">{{ props.date }}</span>
     <span
       class="col-start-3 text-zinc-500 dark:text-zinc-400 text-sm flex items-center justify-end"
-      >{{ props.location }}</span
     >
+      {{ props.location }}
+    </span>
     <Tag v-if="props.tags?.[1]" class="col-start-2">{{ props.tags?.[1] }}</Tag>
     <Tag v-if="props.tags?.[0]" class="col-start-3">{{ props.tags?.[0] }}</Tag>
   </div>
