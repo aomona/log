@@ -27,11 +27,11 @@ jobs:
         with:
           node-version: "24"
           package-manager-cache: false
-      - uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          cache: true
-          require-lockfile: true
-      - run: pnpm run ${{ matrix.task }}
+          bun-version-file: package.json
+      - run: bun ci
+      - run: bun run ${{ matrix.task }}
         env:
           VOID_CLOUDFLARE_DEPLOY_BUILD: ${{ matrix.task == 'build' && '1' || '' }}
 
@@ -46,10 +46,10 @@ jobs:
         with:
           node-version: "24"
           package-manager-cache: false
-      - uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          cache: true
-          require-lockfile: true
+          bun-version-file: package.json
+      - run: bun ci
       - name: Deploy
         env:
           # Add this scoped token at Settings → Secrets and variables → Actions.
@@ -61,4 +61,4 @@ jobs:
           # Required only when Cloudflare Access protects Worker readiness.
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
-        run: pnpm exec void deploy --platform cloudflare
+        run: bun run void deploy --platform cloudflare
