@@ -16,7 +16,8 @@
     "build": "vp build",
     "preview": "vp preview",
     "postinstall": "void prepare",
-    "prepare": "vp config --no-agent"
+    "prepare": "vp config --no-agent",
+    "test:markdown": "node --test tests/markdown-source.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.4",
