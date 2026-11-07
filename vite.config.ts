@@ -22,6 +22,25 @@ export default defineConfig({
   fmt: {
     htmlWhitespaceSensitivity: "ignore",
   },
+  run: {
+    tasks: {
+      "ci-test": {
+        command: "vp test run",
+        cache: {
+          input: [{ auto: true }, "!.void/**", "!.wrangler/**", "!.cloudflare/**", "!dist/**"],
+          output: [],
+        },
+      },
+      "ci-build": {
+        command: "vp build",
+        cache: {
+          env: ["VOID_CLOUDFLARE_DEPLOY_BUILD"],
+          input: [{ auto: true }, "!.void/**", "!.wrangler/**", "!.cloudflare/**", "!dist/**"],
+          output: ["dist/**", ".cloudflare/output/**"],
+        },
+      },
+    },
+  },
   staged: {
     "*": "vp check --fix",
   },

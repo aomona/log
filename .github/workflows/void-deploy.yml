@@ -27,17 +27,32 @@ jobs:
         with:
           bun-version-file: package.json
       - run: bun ci
+      - name: Restore task cache
+        id: task-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: node_modules/.vite/task-cache
+          key: vite-task-${{ runner.os }}-${{ runner.arch }}-node24-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            vite-task-${{ runner.os }}-${{ runner.arch }}-node24-
       - parallel:
           - name: Check
-            run: bun run check
+            run: bun run vp run --cache check
           - name: Typecheck
-            run: bun run typecheck
+            run: bun run vp run --cache typecheck
           - name: Test
-            run: bun run test
+            run: bun run vp run ci-test
           - name: Build
-            run: bun run build
+            run: |
+              bun run vp run ci-build
+              test -f .cloudflare/output/v0/workers/default/worker.config.json
             env:
               VOID_CLOUDFLARE_DEPLOY_BUILD: "1"
+      - name: Save task cache
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: node_modules/.vite/task-cache
+          key: ${{ steps.task-cache.outputs.cache-primary-key }}
 
   deploy:
     needs: checks
