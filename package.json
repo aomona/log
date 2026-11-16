@@ -20,11 +20,11 @@
     "test:markdown": "node --test tests/markdown-source.mjs"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.4",
+    "@tailwindcss/vite": "^4.3.5",
     "@void/md": "^1.5.0",
-    "hono": "^4.13.16",
-    "tailwindcss": "^4.3.4",
-    "vue": "^3.5.44",
+    "hono": "^4.13.18",
+    "tailwindcss": "^4.3.5",
+    "vue": "^3.5.45",
     "zod": "^4.6.7"
   },
   "devDependencies": {
